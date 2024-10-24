@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Resume - Yuvraj Gupta</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .rocket {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 30px;
+            background-color: red;
+            animation: moveRocket 3s linear infinite;
+        }
+
+        @keyframes moveRocket {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100vh);
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .content {
+            transition: transform 0.2s;
+        }
+
+        img {
+            width: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        h1, h2, p {
+            margin: 10px 0;
+        }
+
+        #skills {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="content">
+            <img src="/home/yuvi/Pictures/logo.jpg" alt="Your Photo">
+            <h1>Yuvraj Gupta</h1>
+            <h2>Web Developer | Ethical Hacker | Web Application Penetration Tester</h2>
+            <p id="skills">Skills: HTML, CSS, JavaScript, Bootstrap, Tailwind CSS, Python, C</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const content = document.querySelector('.content');
+            const x = (window.innerWidth / 2 - e.pageX) / 20;
+            const y = (window.innerHeight / 2 - e.pageY) / 20;
+            content.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+
+        // Rocket animation setup
+        function createRocket() {
+            const rocket = document.createElement('div');
+            rocket.classList.add('rocket');
+            rocket.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(rocket);
+
+            setTimeout(() => {
+                rocket.remove();
+            }, 3000);
+        }
+
+        setInterval(createRocket, 1000);  // Generates a new rocket every second
+    </script>
+
+</body>
+</html>
